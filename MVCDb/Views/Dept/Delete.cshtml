@@ -1,0 +1,19 @@
+﻿@model Dept
+<h2>Deleting Record of @Model.Name</h2>
+<p>
+    <label asp-for="Id"></label> :<input type="text" asp-for="Id" readonly/>
+
+</p>
+<p>
+    <label asp-for="Location"></label> :<input type="text" asp-for="Location" readonly/>
+
+</p>
+<form method="post">
+    <input type="submit" value="Are you sure?" style="background-color:red;height:50px;font-size:x-large"/>
+</form>
+
+@Html.ActionLink("Back to List", "List")
+
+<script src="~/jquery/jquery.min.js"></script>
+<script src="~/jquery-validate/jquery.validate.min.js"></script>
+<script src="~/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>

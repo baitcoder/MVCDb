@@ -13,25 +13,33 @@ namespace MVCDb.Models
         }
         public void AddDept(Dept dept)
         {
-            throw new System.NotImplementedException();
+            db.Depts.Add(dept);
+            db.SaveChanges();
+
         }
 
         public void DeleteDept(int id)
         {
-            throw new System.NotImplementedException();
+            Dept data =db.Depts.Find(id);  
+            db.Depts.Remove(data);
+            db.SaveChanges();
         }
 
         public void EditDept(Dept dept)
         {
-            throw new System.NotImplementedException();
+            Dept odept = db.Depts.Find(dept.Id);
+            odept.Name = dept.Name;
+            odept.Location = dept.Location;
+            db.SaveChanges();
         }
 
         
 
-        public Dept GetDeptById(int id)
+        public Dept FindDept(int id)
         {
             var data=db.Depts.Find(id);
             return data;
         }
+
     }
 }
