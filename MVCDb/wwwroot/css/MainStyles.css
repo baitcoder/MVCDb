@@ -1,6 +1,6 @@
 ﻿body {
     margin: 40px;
-    background-color: lightgoldenrodyellow;
+    background-color: lightgrey;
     height: 800px;
     border: 5px solid gray;
 }
@@ -13,11 +13,12 @@ h1 {
 
 table {
     width: 100%;
+    border: black solid 2px;
 }
 
 tr:hover {
-    color: gold;
-    background-color: darkturquoise;
+    color: black;
+    background-color: lightblue;
 }
 
 th {

@@ -1,0 +1,18 @@
+﻿@model IEnumerable<MVCDb.ViewModel.EmpDept>
+<h2>
+	Bonus Listing
+</h2>
+<hr />
+@foreach(var data in Model)
+{
+<div style="border-style:double;border-color:darkred;border-radius:10px 10px;width:300px;padding=20px">
+	<b>@Html.DisplayNameFor(e=>data.Id)</b> : @Html.DisplayFor(e=>data.Id)<br>
+	<b>@Html.DisplayNameFor(e=>data.Name)</b> : @Html.DisplayFor(e=>data.Name)<br>
+	<b>@Html.DisplayNameFor(e=>e.DeptName)</b> : @Html.DisplayFor(e=>data.DeptName)<br>
+	<b>@Html.DisplayNameFor(e=>data.Location)</b> : @Html.DisplayFor(e=>data.Location)<br>
+	<b>@Html.DisplayNameFor(e=>data.Salary)</b> : @Html.DisplayFor(e=>data.Salary)<br>
+	<b>@Html.DisplayNameFor(e=>data.Bonus)</b> : @Html.DisplayFor(e=>data.Bonus)<br>
+
+</div> 
+
+}
