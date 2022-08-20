@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System;
+using System.Linq;
+using Microsoft.AspNetCore.Mvc;
 using MVCDb.Models;
 
 namespace MVCDb.Controllers
@@ -6,6 +8,7 @@ namespace MVCDb.Controllers
     public class DeptController : Controller
     {
         IDept repos;
+        /*DB1045Context db=new DB1045Context();*/
         public DeptController(IDept _repos)
         {
             repos=_repos;
@@ -13,9 +16,18 @@ namespace MVCDb.Controllers
 
         public IActionResult List()
         {
-            var data =repos.GetAllDepts();
-            return View(data);
+			try
+			{
+                var data = repos.GetAllDepts();
+                return View(data);
+            }
+			catch (Exception ex)
+			{
+                ViewBag.ExceptionMessage = ex.Message;
+                return View("Error");
+			}
         }
+
         public IActionResult Display(int id)
 		{
             var data=repos.FindDept(id);
@@ -31,12 +43,20 @@ namespace MVCDb.Controllers
 		[HttpPost]
         public IActionResult Create(Dept dept)
         {
-			if (ModelState.IsValid)
+			try
 			{
-                repos.AddDept(dept);
-                return RedirectToAction("List");
+                if (ModelState.IsValid)
+                {
+                    repos.AddDept(dept);
+                    return RedirectToAction("List");
+                }
+                return View(dept);
+            }
+            catch(Exception e)
+			{
+                ViewBag.ExceptionMessage=e.InnerException.Message;
+                return View("Error");
 			}
-            return View(dept);
         }
 
 		[HttpGet]
@@ -70,7 +90,13 @@ namespace MVCDb.Controllers
             repos.DeleteDept(dept.Id);
             return RedirectToAction("List");
         }
-
+        
+        /*public JsonResult DuplicateDept(int id)
+        {
+            bool yesno = db.Depts.Any(e => e.Id == id);
+            
+            return Json(!yesno);
+        }*/
     }
 
 }

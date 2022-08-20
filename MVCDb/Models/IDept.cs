@@ -9,5 +9,6 @@ namespace MVCDb.Models
         void DeleteDept(int id);
         void EditDept(Dept dept);
         void AddDept(Dept dept);
-    }
+		
+	}
 }
